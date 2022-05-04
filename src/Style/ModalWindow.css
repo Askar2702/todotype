@@ -1,0 +1,13 @@
+.modalWindow {
+  background-color: rgba(211, 211, 211, 0.377);
+}
+.modalWindowContent {
+  background-color: rgb(211, 211, 211);
+  color: rgb(255, 255, 255);
+  width: 50%;
+  height: max-content;
+}
+
+svg {
+  fill: rgb(20, 29, 43);
+}

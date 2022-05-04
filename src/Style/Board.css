@@ -1,0 +1,17 @@
+.board {
+  height: max-content;
+  background-color: rgb(87, 115, 255);
+}
+.board__title {
+  background-color: rgb(240, 242, 255);
+}
+.board__btn {
+  background-color: rgb(171, 212, 248);
+}
+.board__btn:hover {
+  background-color: rgb(96, 181, 255);
+}
+
+.bi.bi-plus-lg {
+  margin-right: 10px;
+}
