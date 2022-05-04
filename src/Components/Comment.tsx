@@ -23,10 +23,12 @@ const Comment: FC<iComment> = ({ comments }) => {
   };
 
   const renameComment = (e: iSubmitForm) => {
-    const com = coms ? coms : null;
+    const com = coms;
 
-    if (com && e.id && e.text) com[e.id] = e.text;
-    com && setComs(com);
+    if (com && e.id !== null && e.text) {
+      com[e.id] = e.text;
+    }
+    setComs(com);
     setEdit({ id: null, value: "" });
     saveData();
   };
