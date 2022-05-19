@@ -32,6 +32,7 @@ export interface iSubmitForm {
 export interface iCurrentTask {
   todo: iitems | null;
   column: iBoard | null;
+  board?: iBoard | null;
 }
 
 interface iPlaceholder {
@@ -51,9 +52,12 @@ export interface iModalWindow {
 }
 
 export interface iTask {
-  todos: iitems[];
+  todos: iBoard;
   id: number;
   showModal: (e: iitems, id: number) => void;
   removeTask: (todo: iitems, id: number) => void;
   editTodo: (newValue: iSubmitForm, id: number) => void;
+  setCurrent: any;
+  currentTask: iCurrentTask;
+  dragItem: (todo: iitems, id: number) => void;
 }

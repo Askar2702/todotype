@@ -23,6 +23,10 @@ const TodoForm: FC<iProps> = (props) => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
+    var str = input;
+    str = str.replace(/\s/g, "");
+    if (!str) return;
+
     props.onSubmit({
       id: props.edit ? props.edit.id : null,
       text: input,

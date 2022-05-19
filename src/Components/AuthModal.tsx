@@ -8,9 +8,6 @@ const AuthModal: FC = () => {
   const auth = useContext(Authcontext);
 
   const authorization = (e: iSubmitForm) => {
-    if (e.text === "") {
-      return;
-    }
     e.text && auth?.SetAuth(e.text);
   };
   return (

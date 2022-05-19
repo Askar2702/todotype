@@ -38,11 +38,6 @@ const Board: FC = () => {
   };
 
   const createTask = (value: iSubmitForm) => {
-    if (value.text === "") {
-      setEdit({ id: null, value: "" });
-      return;
-    }
-
     boards.map((item: iBoard) => {
       item.items = [...item.items];
       item.id === edit.id &&
@@ -109,6 +104,28 @@ const Board: FC = () => {
     saveData();
   };
 
+  const dragItem = (todo: iitems, id: number) => {
+    const g = [...boards];
+    g.map((i) => {
+      i.id === id && i.items.push(currentTask.todo);
+    });
+    setBoards(g);
+    if (currentTask.todo && currentTask.board) {
+      removeTask(currentTask.todo, currentTask.board.id);
+    }
+  };
+  function dragOverHandler(e: any) {
+    e.preventDefault();
+  }
+  function dragHandler(e: any, board: iBoard) {
+    e.preventDefault();
+    if (currentTask.todo && currentTask.board) {
+      if (currentTask.board.id === board.id || board.items.length > 0) return;
+      board.items.push(currentTask.todo);
+      removeTask(currentTask.todo, currentTask.board.id);
+    }
+  }
+
   if (authcontext?.auth === "") {
     return <AuthModal />;
   }
@@ -117,9 +134,12 @@ const Board: FC = () => {
     <div className="d-flex flex-row justify-content-around  mt-lg-5">
       {boards.map((b: iBoard) => (
         <div
+          id="board"
           key={b.title}
           className="container board   
             m-2 text-center rounded-3"
+          onDragOver={(e) => dragOverHandler(e)}
+          onDrop={(e) => dragHandler(e, b)}
         >
           {formSelect === "titleRename" + b.id ? (
             <TodoForm
@@ -144,11 +164,14 @@ const Board: FC = () => {
           )}
 
           <Task
-            todos={b.items}
+            todos={b}
             id={b.id}
             showModal={showModal}
             removeTask={removeTask}
             editTodo={editTodo}
+            setCurrent={setCurrentTask}
+            currentTask={currentTask}
+            dragItem={dragItem}
           />
           {edit.id == b.id ? (
             <TodoForm

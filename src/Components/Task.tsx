@@ -1,11 +1,20 @@
 import React, { FC, useContext, useEffect, useState } from "react";
 import { Authcontext } from "../Context/Authorization";
-import { iEdit, iSubmitForm, iTask } from "../Interfaces";
+import { iBoard, iEdit, iitems, iSubmitForm, iTask } from "../Interfaces";
 import { saveData } from "../LocalData";
 import "../Style/Task.css";
 import TodoForm from "./TodoForm";
 
-const Task: FC<iTask> = ({ todos, id, showModal, removeTask, editTodo }) => {
+const Task: FC<iTask> = ({
+  todos,
+  id,
+  showModal,
+  removeTask,
+  editTodo,
+  setCurrent,
+  currentTask,
+  dragItem,
+}) => {
   const [edit, setEdit] = useState<iEdit>({
     id: null,
     value: "",
@@ -18,10 +27,42 @@ const Task: FC<iTask> = ({ todos, id, showModal, removeTask, editTodo }) => {
     setEdit({ id: null, value: "" });
   };
 
+  function dragOverHandler(e: any) {
+    e.preventDefault();
+    if (e.currentTarget.id === "task") {
+      e.currentTarget.style.boxShadow = "0 4px 3px gray";
+    }
+  }
+  function dragLeaveHandler(e: any) {
+    e.currentTarget.style.boxShadow = "none";
+  }
+  function dragStartHandler(e: any, board: iBoard, todo: iitems) {
+    setCurrent({ todo, board });
+  }
+  function dragEndHandler(e: any) {
+    e.currentTarget.style.boxShadow = "none";
+  }
+
+  function dragHandler(e: any, board: iBoard, todo: iitems) {
+    e.preventDefault();
+    if (currentTask.board?.id === id) return;
+    dragItem(todo, id);
+  }
+
   return (
     <>
-      {todos.map((todo, index) => (
-        <div className="task rounded-3 mt-2" key={index}>
+      {todos.items.map((todo, index) => (
+        <div
+          draggable={true}
+          onDragOver={(e) => dragOverHandler(e)}
+          onDragLeave={(e) => dragLeaveHandler(e)}
+          onDragStart={(e) => dragStartHandler(e, todos, todo)}
+          onDragEnd={(e) => dragEndHandler(e)}
+          onDrop={(e) => dragHandler(e, todos, todo)}
+          className="task rounded-3 mt-2"
+          id="task"
+          key={index}
+        >
           {edit.value === todo.title ? (
             <TodoForm
               idForm="taskForm"

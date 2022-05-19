@@ -19,6 +19,7 @@ const Comment: FC<iComment> = ({ comments }) => {
       setComs([...coms, e.text]);
       comments?.push(e.text);
       saveData();
+      
     }
   };
 
