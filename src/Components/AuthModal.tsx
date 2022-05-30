@@ -14,12 +14,15 @@ const AuthModal: FC = () => {
     <div className="position-fixed top-0 start-0 modalWindow w-100 h-100 d-flex justify-content-center align-items-center">
       <div className="modalWindowContent mt-5 p-5 rounded-3">
         <div className="text-dark text-center my-3">
-          <h3>Введите своё имя</h3>
+          <h3>Enter your name</h3>
         </div>
         <TodoForm
           onSubmit={authorization}
           idForm="aurhForm"
-          placeholder={{ textInput: "Введите имя...", textBtn: "Сохранить" }}
+          placeholder={{
+            textInput: "Enter name...",
+            textBtn: "Save",
+          }}
         />
       </div>
     </div>

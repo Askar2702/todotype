@@ -38,21 +38,22 @@ const Board: FC = () => {
   };
 
   const createTask = (value: iSubmitForm) => {
-    boards.map((item: iBoard) => {
-      item.items = [...item.items];
-      item.id === edit.id &&
-        (item.items = [
-          {
-            title: value.text,
-            desc: "",
-            comment: [],
-          },
-          ...item.items,
-        ]);
-    });
-
-    saveData();
+    if (value.text !== "") {
+      boards.map((item: iBoard) => {
+        // item.items = [...item.items];
+        item.id === edit.id &&
+          (item.items = [
+            {
+              title: value.text,
+              desc: "",
+              comment: [],
+            },
+            ...item.items,
+          ]);
+      });
+    }
     setEdit({ id: null, value: "" });
+    saveData();
   };
 
   const showModal = (e: iitems, id: number) => {
@@ -146,8 +147,8 @@ const Board: FC = () => {
               edit={{ id: b.id, value: b.title, todo: b }}
               idForm="columnForm"
               placeholder={{
-                textInput: "Введите новое название...",
-                textBtn: "Сохранить",
+                textInput: "Enter a new name...",
+                textBtn: "Save",
               }}
               onSubmit={renameTitle}
             />
@@ -173,13 +174,13 @@ const Board: FC = () => {
             currentTask={currentTask}
             dragItem={dragItem}
           />
-          {edit.id == b.id ? (
+          {edit.id === b.id ? (
             <TodoForm
               onSubmit={createTask}
               idForm="createTasks"
               placeholder={{
-                textInput: "Создайте задачу...",
-                textBtn: "Сохранить",
+                textInput: "Create a task...",
+                textBtn: "Save",
               }}
             />
           ) : (
@@ -209,6 +210,7 @@ const Board: FC = () => {
           )}
         </div>
       ))}
+
       {currentTask.column && (
         <ModalWindow todo={currentTask} close={closeModal} />
       )}

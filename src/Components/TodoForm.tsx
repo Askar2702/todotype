@@ -70,7 +70,7 @@ const TodoForm: FC<iProps> = (props) => {
             >
               {btnText}
             </button>
-            {placeholder !== "Введите имя..." && (
+            {placeholder !== "Enter your name..." && (
               <button className="btn" onClick={exit}>
                 <i className="bi bi-x-lg"></i>
               </button>

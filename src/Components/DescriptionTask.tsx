@@ -28,7 +28,7 @@ const DescriptionTask: FC<IDescriptionTask> = ({ todo }) => {
           <path d="M3 5.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 8zm0 2.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5z" />
         </svg>
         <div className="align-self-end ms-2">
-          <h3 className="h5 text-dark">Описание</h3>
+          <h3 className="h5 text-dark">Description</h3>
         </div>
         <div>
           <button
@@ -37,7 +37,7 @@ const DescriptionTask: FC<IDescriptionTask> = ({ todo }) => {
               setDesc("");
             }}
           >
-            Изменить
+            Change
           </button>
           <button
             className="btn p-0"
@@ -66,8 +66,8 @@ const DescriptionTask: FC<IDescriptionTask> = ({ todo }) => {
             edit={{ id: todo.column?.id, value: todo.todo?.desc }}
             idForm="descForm"
             placeholder={{
-              textInput: "Добавить более подробное описание...",
-              textBtn: "Сохранить",
+              textInput: "Add a more detailed description...",
+              textBtn: "Save",
             }}
             onSubmit={changeDesc}
           />

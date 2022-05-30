@@ -61,7 +61,7 @@ const ModalWindow: FC<iModalWindow> = ({ todo, close }) => {
           </div>
 
           <div>
-            <h6 className="text-dark ">в колонке: {todo.column?.title}</h6>
+            <h6 className="text-dark ">in a collumn: {todo.column?.title}</h6>
           </div>
         </div>
 

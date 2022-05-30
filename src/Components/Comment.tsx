@@ -19,7 +19,6 @@ const Comment: FC<iComment> = ({ comments }) => {
       setComs([...coms, e.text]);
       comments?.push(e.text);
       saveData();
-      
     }
   };
 
@@ -56,14 +55,14 @@ const Comment: FC<iComment> = ({ comments }) => {
           <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1H2zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12z" />
           <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
         </svg>
-        <h3 className="h5 text-dark mx-2">Действия</h3>
+        <h3 className="h5 text-dark mx-2">Comments</h3>
       </div>
       <div className=" mt-3">
         <TodoForm
           idForm="commentsForm"
           placeholder={{
-            textInput: "Напишите комментарий...",
-            textBtn: "Сохранить",
+            textInput: "Write a comment...",
+            textBtn: "Save",
           }}
           onSubmit={addComment}
         />
@@ -77,8 +76,8 @@ const Comment: FC<iComment> = ({ comments }) => {
                 edit={edit}
                 idForm="commentsFormCom"
                 placeholder={{
-                  textInput: "Обновите комментарий...",
-                  textBtn: "Обновить",
+                  textInput: "Update comment...",
+                  textBtn: "Update",
                 }}
                 onSubmit={renameComment}
               />
@@ -92,13 +91,13 @@ const Comment: FC<iComment> = ({ comments }) => {
                   className="btn text-decoration-underline"
                   onClick={() => setEdit({ id: index, value: com })}
                 >
-                  Изменить
+                  Change
                 </button>
                 <button
                   className="btn text-decoration-underline"
                   onClick={() => deleteCom(index)}
                 >
-                  Удалить
+                  Delete
                 </button>
               </>
             )}

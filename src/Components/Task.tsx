@@ -19,12 +19,24 @@ const Task: FC<iTask> = ({
     id: null,
     value: "",
   });
+
+  const [isChangeName, setIsChangeName] = useState<Boolean>(false);
   const auth = useContext(Authcontext);
 
   const submitUpdate = (value: iSubmitForm) => {
     editTodo(value, id);
     saveData();
     setEdit({ id: null, value: "" });
+    setIsChangeName(true);
+  };
+
+  const renameTask = (todo: any) => {
+    setEdit({
+      id: id,
+      value: todo.title,
+      todo: todo,
+    });
+    setIsChangeName(true);
   };
 
   function dragOverHandler(e: any) {
@@ -63,14 +75,14 @@ const Task: FC<iTask> = ({
           id="task"
           key={index}
         >
-          {edit.value === todo.title ? (
+          {edit.value === todo.title && isChangeName ? (
             <TodoForm
               idForm="taskForm"
               edit={edit}
               onSubmit={submitUpdate}
               placeholder={{
-                textInput: "Введите новое название...",
-                textBtn: "Обновить",
+                textInput: "Enter a new name...",
+                textBtn: "Update",
               }}
             />
           ) : (
@@ -99,16 +111,7 @@ const Task: FC<iTask> = ({
                   <h6>{auth?.auth}</h6>
                 </div>
                 <div className="d-flex justify-content-end mx-2">
-                  <button
-                    className="btn px-1"
-                    onClick={() =>
-                      setEdit({
-                        id: id,
-                        value: todo.title,
-                        todo: todo,
-                      })
-                    }
-                  >
+                  <button className="btn px-1" onClick={() => renameTask(todo)}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
