@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/http//Askar2702.github.io/todotype/static/css/main.7bc96661.css",
+    "main.js": "/http//Askar2702.github.io/todotype/static/js/main.39837490.js",
+    "index.html": "/http//Askar2702.github.io/todotype/index.html",
+    "main.7bc96661.css.map": "/http//Askar2702.github.io/todotype/static/css/main.7bc96661.css.map",
+    "main.39837490.js.map": "/http//Askar2702.github.io/todotype/static/js/main.39837490.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7bc96661.css",
+    "static/js/main.39837490.js"
+  ]
+}
